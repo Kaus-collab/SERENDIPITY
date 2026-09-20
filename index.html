@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <title>SERENDIPITY — Stop scrolling. Start discovering.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" data-nav="home" aria-label="Serendipity home">
+        <span class="brand-mark">✳</span>
+        <span>SERENDIPITY</span>
+      </a>
+      <p class="sidebar-kicker">A little less algorithm.<br>A little more alive.</p>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-nav="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-nav="discover"><span>✦</span> Discover</button>
+        <button class="nav-item" data-nav="active"><span>◷</span> Active Mission <b class="nav-dot" hidden></b></button>
+        <button class="nav-item" data-nav="memories"><span>▣</span> Memory Jar</button>
+        <button class="nav-item" data-nav="profile"><span>◎</span> Profile</button>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="status-pulse"></span>
+        <span>Offline-first adventure</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="mobile-header">
+        <a class="brand" href="#home" data-nav="home"><span class="brand-mark">✳</span><span>SERENDIPITY</span></a>
+        <button class="icon-button" data-nav="profile" aria-label="Open profile">◎</button>
+      </header>
+
+      <section id="home" class="view active-view" aria-labelledby="home-title">
+        <div class="hero">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT DETOUR AWAITS</div>
+          <h1 id="home-title">Stop scrolling.<br><em>Start discovering.</em></h1>
+          <p class="hero-copy">Tell us what you’ve got. We’ll turn it into a story worth remembering.</p>
+        </div>
+        <div class="constraint-layout">
+          <div class="constraint-panel">
+            <constraint-group label="I’m feeling" name="mood" options="Bored|Curious|Adventurous|Social|Creative|Chill"></constraint-group>
+            <constraint-group label="TIME AVAILABLE" name="time" options="10 min|30 min|1 hour|2+ hours"></constraint-group>
+            <constraint-group label="BUDGET" name="budget" options="Free / ₹0|₹50|₹100|₹500+"></constraint-group>
+            <constraint-group label="My energy is" name="energy" options="Low|Medium|High"></constraint-group>
+          </div>
+          <div class="surprise-wrap">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <button id="surpriseButton" class="surprise-button" type="button">
+              <span class="surprise-spark">✦</span>
+              <span>SURPRISE ME</span>
+              <small>find the unexpected</small>
+            </button>
+          </div>
+        </div>
+        <div id="patternMessage" class="pattern-message" hidden></div>
+        <details class="anti-algorithm-info">
+          <summary>Why is Serendipity different?</summary>
+          <p>Most recommendation systems learn what you like and give you more of it.</p>
+          <p>Serendipity uses your preferences as boundaries, then deliberately introduces something unfamiliar.</p>
+          <p>It’s an anti-algorithm for real life.</p>
+        </details>
+        <div class="home-footnote"><span>✳</span> No feeds. No ads. Just a nudge outside.</div>
+      </section>
+
+      <section id="discover" class="view" aria-labelledby="discover-title">
+        <div class="section-heading"><div><div class="eyebrow">THE DETOUR DESK</div><h2 id="discover-title">Discover something<br><em>unplanned.</em></h2></div><span class="section-number">01 / 05</span></div>
+        <div id="missionReveal" class="mission-reveal" hidden></div>
+      </section>
+
+      <section id="active" class="view" aria-labelledby="active-title">
+        <div class="section-heading"><div><div class="eyebrow">IN PROGRESS</div><h2 id="active-title">You’re out<br><em>there.</em></h2></div><span class="section-number">02 / 05</span></div>
+        <div id="activeMissionContainer"></div>
+      </section>
+
+      <section id="memories" class="view" aria-labelledby="memories-title">
+        <div class="section-heading"><div><div class="eyebrow">THE MEMORY JAR</div><h2 id="memories-title">Proof you<br><em>were here.</em></h2></div><span class="section-number">03 / 05</span></div>
+        <div id="chainContainer"></div>
+        <div id="memoriesContainer"></div>
+      </section>
+
+      <section id="profile" class="view" aria-labelledby="profile-title">
+        <div class="section-heading"><div><div class="eyebrow">DISCOVERY PROFILE</div><h2 id="profile-title">Your particular<br><em>kind of curious.</em></h2></div><span class="section-number">04 / 05</span></div>
+        <div id="profileContainer"></div>
+      </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+      <button class="nav-item active" data-nav="home"><span>⌂</span><small>Home</small></button>
+      <button class="nav-item" data-nav="discover"><span>✦</span><small>Discover</small></button>
+      <button class="nav-item" data-nav="active"><span>◷</span><small>Active</small><b class="nav-dot" hidden></b></button>
+      <button class="nav-item" data-nav="memories"><span>▣</span><small>Jar</small></button>
+      <button class="nav-item" data-nav="profile"><span>◎</span><small>Profile</small></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
